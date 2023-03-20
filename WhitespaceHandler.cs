@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace chainofresponsibility2
 {
-    internal class WhitespaceHandler : IHandler<Subject>
+    internal class WhitespaceHandler : IHandler<string>
     {
-        public void Handle(Subject request)
-        {
-
-            //throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Retuns true only if all of the chars in the part are whitespaces
+        /// and less than 3
+        /// </summary>
+        /// <param name="part"></param>
+        /// <returns></returns>
+        public bool Handle(string part)=> (
+            part.Length<=3 && 
+            part.All(x=>x.Equals(" "))
+        );
+     
     }
 }
 

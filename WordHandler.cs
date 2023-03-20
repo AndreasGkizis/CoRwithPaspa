@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace chainofresponsibility2
 {
-    internal class WordHandler : IHandler<Subject>
+    internal class WordHandler<T> : IHandler<string>
     {
-        public void Handle(Subject request)
-        {
-
-            //throw new NotImplementedException();
-        }
+        /// <summary>
+        /// returns true when the part is longer than 1 and does NOT contain spaces 
+        /// </summary>
+        /// <param name="part"></param>
+        /// <returns></returns>
+        public bool Handle(string part)=> (part.Length >= 1 && !part.Contains(" "));
+       
     }
 }

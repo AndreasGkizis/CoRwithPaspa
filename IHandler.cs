@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace chainofresponsibility2
 {
-    internal interface IHandler<T> //where T : class
+    internal interface IHandler<T>
     {
-        void Handle(T request);
-        void Next();
+        bool Handle(T part);
+
+        // we will implement a way so that the
+        // next will not be in every handler
+        //void Next();
     }
 }

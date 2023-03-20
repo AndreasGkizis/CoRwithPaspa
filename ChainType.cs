@@ -8,7 +8,7 @@ namespace chainofresponsibility2
 {
     enum ChainType
     {
-        StartWithWord,
-        StartWithSpace
+        WordSpaceWord = 0,
+        StartsWithWhitespace = 1,
     }
 }

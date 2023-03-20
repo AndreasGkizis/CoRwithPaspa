@@ -11,7 +11,13 @@ namespace chainofresponsibility2
         public List<string> Parts { get; set; }
         public Subject()
         {
-            Parts.Add("Kalhspera kai kalh bradia");
+            Parts.Add("Kalhspera");
+            Parts.Add(" ");
+            Parts.Add("kai");
+            Parts.Add("  ");
+            Parts.Add("kalh");
+            Parts.Add("    ");
+            Parts.Add("bradia");
         }
     }
 }

@@ -6,13 +6,26 @@ using System.Threading.Tasks;
 
 namespace chainofresponsibility2
 {
-    abstract class AbstractChain<T>
-    {
-        public List<IHandler<T>> Handlers { get ; private set ; }
+    //The abstract class will implement anything every chain will do.
 
-        public AbstractChain(ChainType type)
+    abstract class AbstractChain<TSubject, TChain>
+    {
+        public TSubject Sub { get; set; }
+        public TChain Type { get; set; }
+        public List<IHandler<TSubject>> Handlers { get ; private set ; }
+        //public WordHandler Word { get; set; }
+        //public WhitespaceHandler Whitespace { get; set; }
+
+        //public AbstractChain()
+        //{
+        //    Handlers.Add(new WordHandler());
+        //    Handlers.Add(new WhitespaceHandler());
+        //}
+        public AbstractChain(TSubject sub, TChain type)
         {
-            // make a chain 
+            this.Type = type;
+            this.Sub = sub;
+            // make a chain, use the type to make diferent chains
         }
       
     }
