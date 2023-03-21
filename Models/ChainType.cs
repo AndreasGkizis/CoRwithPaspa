@@ -10,5 +10,6 @@ namespace chainofresponsibility2
     {
         WordSpaceWord = 0,
         StartsWithWhitespace = 1,
+        Custom = 2
     }
 }

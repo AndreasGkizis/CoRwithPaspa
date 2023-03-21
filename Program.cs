@@ -11,12 +11,24 @@ namespace chainofresponsibility2
                 new Subject(),
                 ChainType.WordSpaceWord,
                 ValidationType.Auto);
+            
+            new SentenceValidator(
+                new Subject(),
+                ChainType.WordSpaceWord,
+                ValidationType.Step).Validate(Lista);
+
+            new SentenceValidator
 
             // should validate wrong 
             new SentenceValidator(
                 new Subject("ayto tha bgalei lathos"),
                 ChainType.WordSpaceWord,
                 ValidationType.Auto);
+
+            new SentenceValidator(
+                new Subject("ayto tha bgalei lathos"),
+                ChainType.WordSpaceWord,
+                ValidationType.Step).Validate();
 
             Console.ReadLine();
 

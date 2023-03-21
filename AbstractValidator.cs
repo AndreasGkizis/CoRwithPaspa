@@ -24,7 +24,7 @@ namespace chainofresponsibility2
             Handlers = new();
         }
 
-         public abstract void Next();
+         public abstract void Next(IHandler<TSubject> handler);
 
     }
 }

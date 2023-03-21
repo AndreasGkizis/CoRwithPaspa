@@ -13,6 +13,6 @@ namespace chainofresponsibility2.Handlers
 
         // we will implement a way so that the
         // next will not be in every handler
-        //void Next();
+        // void Next();
     }
 }

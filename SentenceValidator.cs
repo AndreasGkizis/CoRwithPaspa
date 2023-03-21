@@ -35,35 +35,60 @@ namespace chainofresponsibility2
                     }
 
                     break;
+                case ChainType.Custom:
+
+                    break;
             }
+        }
+        public bool Validate(List<IHandler<Subject>> customList)
+        {
+            foreach (var item in customList)
+            {
+                Next(item);
+            }
+
+            foreach (var item in Handlers)
+            {
+                if (!item.Handle())
+                {
+                    return false;
+                }
+                return true;
+            }
+
+
         }
         public bool Validate()
         {
-
             foreach (var handler in Handlers)
             {
-                if (!handler.Handle())
-                {
-                    Console.WriteLine("this Handled false", handler.Subject);
-                    return false;
-                }
+                //Next(handler);
+                //if (!handler.Handle())
+                //{
+                //    // okay to add position to interface just in order to debug/log?
+                //    Console.WriteLine("this {0} Handled false", handler.Subject);
+                //    continue;
+                //}
             }
-            //Console.WriteLine(Handlers[0].Handle());
-            //Console.WriteLine(Handlers[1].Handle());
-            //Console.WriteLine(Handlers[2].Handle());
-            Console.WriteLine("SentenceValidator .This means everything rvaluated true all seems right");
 
+            Console.WriteLine("SentenceValidator. This means everything evaluated true");
             return true;
 
         }
-        public override void Next()
+        public override void Next(IHandler<Subject> handler)
         {
+            Handlers.Add(handler);
+
+            // if the handle method is true then use next handler  
+            // if false 
+
             //var part = sub.Parts.First();
             //Word.Handle(part);
             //part = sub.Parts[1];
             //Whitespace.Handle(part);
             //part = sub.Parts.Last();
             //Word.Handle(part);
+            int kati = Handlers.IndexOf(Handlers[0]);
             throw new NotImplementedException();
         }
     }
