@@ -21,5 +21,12 @@ namespace chainofresponsibility2
             //Parts.Add("    ");
             //Parts.Add("bradia");
         }
+        public Subject(string kati)
+        {
+            Parts.Add(" ");
+            Parts.Add("Kalhspera");
+            Parts.Add(" ");
+            Parts.Add("kai");
+        }
     }
 }

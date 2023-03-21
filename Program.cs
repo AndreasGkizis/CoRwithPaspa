@@ -6,8 +6,15 @@ namespace chainofresponsibility2
     {
         static void Main(string[] args)
         {
-            var test = new SentenceValidator(
+            // should validate correct
+            new SentenceValidator(
                 new Subject(),
+                ChainType.WordSpaceWord,
+                ValidationType.Auto);
+
+            // should validate wrong 
+            new SentenceValidator(
+                new Subject("ayto tha bgalei lathos"),
                 ChainType.WordSpaceWord,
                 ValidationType.Auto);
 

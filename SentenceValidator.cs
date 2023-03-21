@@ -39,19 +39,19 @@ namespace chainofresponsibility2
         }
         public bool Validate()
         {
-            //bool IsSentenceValid = true;
 
-
-            //foreach (var handler in Handlers)
-            //{
-            //    if (!handler.Handle())
-            //    {
-            //        return false;
-            //    }
-            //}
-            Console.WriteLine(Handlers[0].Handle());
-            Console.WriteLine(Handlers[1].Handle());
-            Console.WriteLine(Handlers[2].Handle());
+            foreach (var handler in Handlers)
+            {
+                if (!handler.Handle())
+                {
+                    Console.WriteLine("this Handled false", handler.Subject);
+                    return false;
+                }
+            }
+            //Console.WriteLine(Handlers[0].Handle());
+            //Console.WriteLine(Handlers[1].Handle());
+            //Console.WriteLine(Handlers[2].Handle());
+            Console.WriteLine("SentenceValidator .This means everything rvaluated true all seems right");
 
             return true;
 
