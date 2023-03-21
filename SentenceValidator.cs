@@ -6,34 +6,44 @@ using System.Threading.Tasks;
 
 namespace chainofresponsibility2
 {
-    internal class SentenceValidator<T> : 
+    internal class SentenceValidator<T> :
         AbstractChain<T, ChainType>, IChain<T>
     {
-        public SentenceValidator(T sub, ChainType type)
-            : base( sub, type)
+        public SentenceValidator(T sub, ChainType type, ValidationType valType)
+            : base(sub, type)
         {
-            IHandler<T> WordHandler1 = new WordHandler<T>();
-            IHandler<T> WhiteSpaceHander1 = new WhitespaceHandler<T>();
-            //IHandler<T> WordHandler2 = new WordHandler<T>();
-
             switch (type)
             {
                 case ChainType.WordSpaceWord:
-                    Handlers.Add(WordHandler1);
-                    Handlers.Add(WhiteSpaceHander1);
-                    Handlers.Add(WordHandler1);
 
-                    
+                    Handlers.Add(new WordHandler<T>(sub, Handlers.Count));
+                    Handlers.Add(new WhitespaceHandler<T>(sub, Handlers.Count));
+                    Handlers.Add(new WordHandler<T>(sub, Handlers.Count));
+                    if (valType == ValidationType.Auto) // Validate();
+                    {
+                        Validate();
+                    }
                     break;
                 case ChainType.StartsWithWhitespace:
+                    Handlers.Add(new WhitespaceHandler<T>(sub, Handlers.Count));
+                    Handlers.Add(new WordHandler<T>(sub, Handlers.Count));
+                    if (valType == ValidationType.Auto) // Validate();
+                    {
+                        Validate();
+                    }
+
                     break;
             }
         }
         public bool Validate()
         {
+            int i = 0;
             foreach (var handler in Handlers)
             {
-                if (handler.Handle())
+                if (handler.Handle() == true)
+                {
+
+                }
             }
         }
         public void Next()

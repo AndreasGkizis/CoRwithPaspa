@@ -8,12 +8,14 @@ namespace chainofresponsibility2
 {
     internal class WordHandler<T> : IHandler<T> //IHandler<Subject>, IHandler<string>
     {
+        public T Subject { get; set; }
+        public int Position { get; set; }
         /// <summary>
         /// returns true when the part is longer than 1 and does NOT contain spaces 
         /// </summary>
         /// <param name="part"></param>
         /// <returns></returns>
-        
+
         //public bool Handle(string part)=> 
         //    (part.Length >= 1 && !part.Contains(" "));
 
@@ -21,6 +23,13 @@ namespace chainofresponsibility2
         //{
         //    throw new NotImplementedException();
         //}
+        public WordHandler(T Subject, int Position)
+        {
+            this.Subject = Subject;
+            this.Position = Position;
+
+
+        }
 
         public bool Handle(T part)
         {

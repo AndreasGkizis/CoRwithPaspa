@@ -23,6 +23,13 @@ namespace chainofresponsibility2
         //{
         //    throw new NotImplementedException();
         //}
+        public T Subject { get; set; }
+        public int Position { get; set; }
+        public WhitespaceHandler(T Subject, int Position)
+        {
+            this.Subject = Subject;
+            this.Position = Position;
+        }
         public bool Handle(T part)
         {
             if (typeof(T) == typeof(string))

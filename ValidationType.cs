@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace chainofresponsibility2
 {
-    internal interface IChain<T>
+    enum ValidationType
     {
-        //public List<IHandler<T>> Handlers { get; }
-        //IHandler<T> MakeChain(List<IHandler<T>> Handlers);
-        void Next();
+        Step = 0,
+        Auto = 1
     }
 }
