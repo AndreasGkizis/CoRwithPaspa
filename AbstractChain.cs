@@ -12,7 +12,7 @@ namespace chainofresponsibility2
     {
         public TSubject Sub { get; set; }
         public TChain Type { get; set; }
-        public List<IHandler<TSubject>> Handlers { get ; private set ; }
+        public List<IHandler<TSubject>> Handlers { get; private set; }
         //public WordHandler Word { get; set; }
         //public WhitespaceHandler Whitespace { get; set; }
 
@@ -23,10 +23,13 @@ namespace chainofresponsibility2
         //}
         public AbstractChain(TSubject sub, TChain type)
         {
-            this.Type = type;
-            this.Sub = sub;
+            Sub = sub;
+            Type = type;
+
+            // new(); finds the correct type of handlers and creates one 
+            Handlers = new();
             // make a chain, use the type to make diferent chains
         }
-      
+
     }
 }

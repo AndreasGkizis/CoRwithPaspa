@@ -8,16 +8,18 @@ namespace chainofresponsibility2
 {
     internal class Subject
     {
-        public List<string> Parts { get; set; }
+        public List<string> Parts { get; set; } = new List<string>();
         public Subject()
         {
+            //Parts = new List<string>();
             Parts.Add("Kalhspera");
             Parts.Add(" ");
             Parts.Add("kai");
-            Parts.Add("  ");
-            Parts.Add("kalh");
-            Parts.Add("    ");
-            Parts.Add("bradia");
+
+            //Parts.Add("  ");
+            //Parts.Add("kalh");
+            //Parts.Add("    ");
+            //Parts.Add("bradia");
         }
     }
 }

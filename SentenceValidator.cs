@@ -6,24 +6,36 @@ using System.Threading.Tasks;
 
 namespace chainofresponsibility2
 {
-    internal class WordSpaceWordChain : AbstractChain<Subject, ChainType>, IChain<Subject>
+    internal class SentenceValidator<T> : 
+        AbstractChain<T, ChainType>, IChain<T>
     {
-        public WordSpaceWordChain(Subject sub, ChainType type)
+        public SentenceValidator(T sub, ChainType type)
             : base( sub, type)
         {
-            IHandler<string> kati = new WordHandler<string>();
+            IHandler<T> WordHandler1 = new WordHandler<T>();
+            IHandler<T> WhiteSpaceHander1 = new WhitespaceHandler<T>();
+            //IHandler<T> WordHandler2 = new WordHandler<T>();
+
             switch (type)
             {
                 case ChainType.WordSpaceWord:
-                    Handlers.Add((IHandler<Subject>)kati);
+                    Handlers.Add(WordHandler1);
+                    Handlers.Add(WhiteSpaceHander1);
+                    Handlers.Add(WordHandler1);
+
+                    
                     break;
                 case ChainType.StartsWithWhitespace:
                     break;
-
             }
-
         }
-
+        public bool Validate()
+        {
+            foreach (var handler in Handlers)
+            {
+                if (handler.Handle())
+            }
+        }
         public void Next()
         {
             //var part = sub.Parts.First();
