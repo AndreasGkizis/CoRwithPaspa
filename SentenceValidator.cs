@@ -3,30 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using chainofresponsibility2.Handlers;
+using chainofresponsibility2.Models;
 
 namespace chainofresponsibility2
 {
-    internal class SentenceValidator<T> :
-        AbstractChain<T, ChainType>, IChain<T>
+    internal class SentenceValidator :
+        AbstractValidator<Subject, ChainType>, IValidator
     {
-        public SentenceValidator(T sub, ChainType type, ValidationType valType)
+        public SentenceValidator(Subject sub, ChainType type, ValidationType valType)
             : base(sub, type)
         {
             switch (type)
             {
                 case ChainType.WordSpaceWord:
 
-                    Handlers.Add(new WordHandler<T>(sub, Handlers.Count));
-                    Handlers.Add(new WhitespaceHandler<T>(sub, Handlers.Count));
-                    Handlers.Add(new WordHandler<T>(sub, Handlers.Count));
+                    Handlers.Add(new WordHandler(sub, Handlers.Count));
+                    Handlers.Add(new WhitespaceHandler(sub, Handlers.Count));
+                    Handlers.Add(new WordHandler(sub, Handlers.Count));
                     if (valType == ValidationType.Auto) // Validate();
                     {
                         Validate();
                     }
                     break;
                 case ChainType.StartsWithWhitespace:
-                    Handlers.Add(new WhitespaceHandler<T>(sub, Handlers.Count));
-                    Handlers.Add(new WordHandler<T>(sub, Handlers.Count));
+                    Handlers.Add(new WhitespaceHandler(sub, Handlers.Count));
+                    Handlers.Add(new WordHandler(sub, Handlers.Count));
                     if (valType == ValidationType.Auto) // Validate();
                     {
                         Validate();
@@ -37,16 +39,24 @@ namespace chainofresponsibility2
         }
         public bool Validate()
         {
-            int i = 0;
-            foreach (var handler in Handlers)
-            {
-                if (handler.Handle() == true)
-                {
+            //bool IsSentenceValid = true;
 
-                }
-            }
+
+            //foreach (var handler in Handlers)
+            //{
+            //    if (!handler.Handle())
+            //    {
+            //        return false;
+            //    }
+            //}
+            Console.WriteLine(Handlers[0].Handle());
+            Console.WriteLine(Handlers[1].Handle());
+            Console.WriteLine(Handlers[2].Handle());
+
+            return true;
+
         }
-        public void Next()
+        public override void Next()
         {
             //var part = sub.Parts.First();
             //Word.Handle(part);
